@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const apiURL = import.meta.env.VITE_API_URL;
+
 export default function ConversationList({
   selectedConversation,
   setSelectedConversation
@@ -11,7 +13,7 @@ export default function ConversationList({
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/messages');
+        const { data } = await axios.get(`${apiURL}/messages`);
         setConversations(data);
       } catch (err) {
         console.error('Error fetching conversations:', err);
